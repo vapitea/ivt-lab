@@ -7,7 +7,12 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sonar.projectKey>vapitea_ivt-lab</sonar.projectKey>
+  		<sonar.organization>vapitea</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  		<sonar.login>eb4a171a643ee7b2f1b61cf5ea165895b4a190c7</sonar.login>
 	</properties>
+
 
 	<dependencies>
 		<dependency>
