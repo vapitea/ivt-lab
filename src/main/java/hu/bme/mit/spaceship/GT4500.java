@@ -1,5 +1,7 @@
 package hu.bme.mit.spaceship;
 
+import jdk.jfr.StackTrace;
+
 /**
  * A cool and very simple spaceship with two proton torpedo stores and four lasers
  */
@@ -91,5 +93,8 @@ public class GT4500 implements SpaceShip {
 
         return firingSuccess;
     }
+
+
+
 
 }
