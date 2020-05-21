@@ -206,5 +206,47 @@ public class GT4500Test {
 
     }
 
+    @Test
+    public void fireTorpedo_Single_Fire_First_Twice() {
+        //Arrange
+        when(mockTorpedoStore1.getTorpedoCount()).thenReturn(10);
+        when(mockTorpedoStore2.getTorpedoCount()).thenReturn(0);
+        when(mockTorpedoStore1.isEmpty()).thenReturn(false);
+        when(mockTorpedoStore2.isEmpty()).thenReturn(true);
+        when(mockTorpedoStore1.fire(anyInt())).thenReturn(true);
+        when(mockTorpedoStore2.fire(anyInt())).thenReturn(false);
 
-}
+        //Act
+        ship.fireTorpedo(FiringMode.SINGLE);
+        boolean result = ship.fireTorpedo(FiringMode.SINGLE);
+
+        //Assert
+
+        verify(mockTorpedoStore1, times(2)).fire(anyInt());
+        verify(mockTorpedoStore2, never()).fire(anyInt());
+
+        Assert.assertTrue(result);
+
+    }
+
+    @Test
+    public void fireTorpedo_All_Empty() {
+        //Arrange
+        when(mockTorpedoStore1.getTorpedoCount()).thenReturn(10);
+        when(mockTorpedoStore2.getTorpedoCount()).thenReturn(10);
+        when(mockTorpedoStore1.isEmpty()).thenReturn(true);
+        when(mockTorpedoStore2.isEmpty()).thenReturn(true);
+        when(mockTorpedoStore1.fire(anyInt())).thenReturn(false);
+        when(mockTorpedoStore2.fire(anyInt())).thenReturn(false);
+
+        //Act
+        boolean result = ship.fireTorpedo(FiringMode.ALL);
+
+        //Assert
+
+        verify(mockTorpedoStore1, never()).fire(anyInt());
+        verify(mockTorpedoStore2, never()).fire(anyInt());
+        Assert.assertFalse(result);
+    }
+
+}   
